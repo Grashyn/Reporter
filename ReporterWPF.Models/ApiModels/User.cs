@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace ReporterWPF.Models
+namespace ReporterWPF.Models.ApiModels
 {
     public class LoginData
     {
