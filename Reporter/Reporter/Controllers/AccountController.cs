@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
+using Reporter.Models;
 using System;
 using System.Linq;
 using System.Security.Claims;
@@ -58,7 +59,14 @@ namespace Reporter.Controllers
                 };
                 var ticket = new AuthenticationTicket(identity, props);
                 var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
-                return Ok(accessToken);
+                return Ok(new UserResponse
+                {
+                    DisplayName = user.DisplayName,
+                    Email = user.Email,
+                    Id = user.Id,
+                    Rights = user.Rights,
+                    Token = accessToken
+                });
             }
 
             return BadRequest("Already exists");

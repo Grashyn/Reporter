@@ -37,13 +37,15 @@ namespace ReporterWPF.DataAccess
                     }
                 });
 
-                var result = await request.GetResponseAsync<string>();
-                RequestComposer.Instance.Token = $"Bearer {result}";
+                var result = await request.GetResponseAsync<User>();
+                RequestComposer.Instance.Token = $"Bearer {result.Token}";
             }
             finally
             {
                 Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
             }
+
+            return false;
         }
     }
 }

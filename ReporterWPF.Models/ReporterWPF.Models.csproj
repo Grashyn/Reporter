@@ -43,11 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\User.cs" />
     <Compile Include="PostRequestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestData.cs" />
     <Compile Include="RequestType.cs" />
-    <Compile Include="ApiModels\User.cs" />
+    <Compile Include="ApiModels\LoginData.cs" />
     <Compile Include="WebRequestExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -17,6 +17,14 @@ namespace Reporter.Controllers
         }
 
         [Authorize]
+        [Route("GetUserReports")]
+        public IEnumerable<Report> GetUserReports([FromUri] Guid userId)
+        {
+            return db.Reports.Where(item => item.CreatorId == userId ||
+                                            item.AssigneeId == userId);
+        }
+
+        [Authorize]
         public Report Get(Guid id)
         {
             return db.Reports.FirstOrDefault(item => item.Id == id);
