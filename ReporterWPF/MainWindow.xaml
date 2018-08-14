@@ -6,7 +6,11 @@
         xmlns:local="clr-namespace:ReporterWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBox x:Name="Email" Text="spiderdk90@gmail.com"/>
+        <TextBox x:Name="Password" Text="qwerty"/>
+        <Button x:Name="Login" 
+                Content="Login"
+                Click="LoginClicked"/>
+    </StackPanel>
 </Window>
