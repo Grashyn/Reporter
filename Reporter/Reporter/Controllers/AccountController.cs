@@ -29,5 +29,25 @@ namespace Reporter.Controllers
 
             return BadRequest("Already exists");
         }
+
+        // POST api/Account/Login
+        [AllowAnonymous]
+        [Route("Login")]
+        public async Task<IHttpActionResult> Login([FromBody]User userModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = db.Users.FirstOrDefault(item => item.Email == userModel.Email && item.Password == userModel.Password);
+            if (user != null)
+            {
+                //TODO: Return token!
+                return Json("");
+            }
+
+            return BadRequest("Already exists");
+        }
     }
 }

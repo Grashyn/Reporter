@@ -10,13 +10,15 @@ namespace Reporter.Controllers
     {
         private ReporterDBEntities db = new ReporterDBEntities();
 
-        // GET api/values/5
+        [Authorize]
+
         public IEnumerable<Comment> Get(Guid reportId)
         {
             return db.Comments.Where(item => item.ReportId == reportId);
         }
 
-        // POST api/values/5
+        [Authorize]
+
         public async Task<IHttpActionResult> Post([FromUri]Guid reportId, [FromBody]Comment value)
         {
             var report = db.Reports.FirstOrDefault(item => item.Id == reportId);
@@ -33,7 +35,8 @@ namespace Reporter.Controllers
             return Ok();
         }
 
-        // PUT api/values/
+        [Authorize]
+
         public async Task<IHttpActionResult> Put([FromBody]Comment value)
         {
             if (value != null)
@@ -52,7 +55,8 @@ namespace Reporter.Controllers
             return BadRequest();
         }
 
-        // DELETE api/values/5
+        [Authorize]
+
         public void Delete(Guid id)
         {
             var item = db.Comments.FirstOrDefault(element => element.Id == id);
