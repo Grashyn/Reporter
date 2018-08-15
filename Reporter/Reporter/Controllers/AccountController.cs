@@ -59,7 +59,7 @@ namespace Reporter.Controllers
                 };
                 var ticket = new AuthenticationTicket(identity, props);
                 var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
-                return Ok(new UserResponse
+                return Ok(new UserResponseExtended
                 {
                     DisplayName = user.DisplayName,
                     Email = user.Email,

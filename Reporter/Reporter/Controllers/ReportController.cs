@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reporter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,9 +26,44 @@ namespace Reporter.Controllers
         }
 
         [Authorize]
-        public Report Get(Guid id)
+        public IHttpActionResult Get(Guid id)
         {
-            return db.Reports.FirstOrDefault(item => item.Id == id);
+            var reports = db.Reports.Where(item => item.Id == id)
+                                   .Select(item => new ReportResponse
+                                   {
+                                       Id = item.Id,
+                                       CreationDate = item.CreationDate,
+                                       LastUpdateDate = item.LastUpdateDate,
+                                       Text = item.Text,
+                                       Title = item.Title,
+                                       Assignee = new UserResponse
+                                       {
+                                           DisplayName = item.Assignee.DisplayName,
+                                           Email = item.Assignee.Email
+                                       },
+                                       Creator = new UserResponse
+                                       {
+                                           DisplayName = item.Creator.DisplayName,
+                                           Email = item.Creator.Email
+                                       },
+                                       Comments = item.Comments.Select(comment => new CommentResponse
+                                       {
+                                           Id = comment.Id,
+                                           PostDate = comment.PostDate,
+                                           Text = comment.Text,
+                                           User = new UserResponse
+                                           {
+                                               DisplayName = comment.User.DisplayName,
+                                               Email = comment.User.Email
+                                           }
+                                       }),
+                                   }).ToList();
+            if (reports.Any())
+            {
+                return Ok(Json(reports.First()));
+            }
+
+            return BadRequest("Report is missing");
         }
 
         [Authorize]

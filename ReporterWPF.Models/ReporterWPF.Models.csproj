@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModels\Comment.cs" />
+    <Compile Include="ApiModels\Report.cs" />
+    <Compile Include="ApiModels\ReportExtended.cs" />
     <Compile Include="ApiModels\User.cs" />
+    <Compile Include="ApiModels\UserResponse.cs" />
     <Compile Include="PostRequestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestData.cs" />

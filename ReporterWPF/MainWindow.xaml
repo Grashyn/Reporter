@@ -8,5 +8,6 @@
         Title="MainWindow">
     <Grid>
         <controls:LoginControl />
+        <controls:ReportsControl />
     </Grid>
 </Window>

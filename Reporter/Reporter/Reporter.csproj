@@ -229,7 +229,10 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Models\CommentResponse.cs" />
+    <Compile Include="Models\ReportResponse.cs" />
     <Compile Include="Models\UserResponse.cs" />
+    <Compile Include="Models\UserResponseExtended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SimpleAuthorizationServerProvider.cs" />
     <Compile Include="Report.cs">
