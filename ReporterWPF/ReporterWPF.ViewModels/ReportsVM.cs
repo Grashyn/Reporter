@@ -8,6 +8,7 @@ namespace ReporterWPF.ViewModels
     public class ReportsVM : BindableBase
     {
         private ObservableCollection<Report> reports;
+        private Report selectedReport;
 
         public ReportsVM()
         {
