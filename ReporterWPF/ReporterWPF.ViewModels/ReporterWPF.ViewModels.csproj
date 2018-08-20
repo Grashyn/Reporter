@@ -49,13 +49,13 @@
     <Compile Include="ReportsVM.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ReporterWPF.Models\ReporterWPF.Models.csproj">
-      <Project>{1d9665f7-4b8b-44a3-bdef-8b32b72e7f86}</Project>
-      <Name>ReporterWPF.Models</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ReporterWPF.DataAccess\ReporterWPF.DataAccess.csproj">
       <Project>{1f0baf92-375e-4c85-83a9-10e9c9ba169b}</Project>
       <Name>ReporterWPF.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReporterWPF.Models\ReporterWPF.Models.csproj">
+      <Project>{1d9665f7-4b8b-44a3-bdef-8b32b72e7f86}</Project>
+      <Name>ReporterWPF.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
