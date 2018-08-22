@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:ReporterWPF.ViewModels;assembly=ReporterWPF.ViewModels"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d">
     <UserControl.Resources>
         <vm:ReportsVM x:Key="ReportsVM"/>
@@ -11,8 +12,53 @@
     <UserControl.DataContext>
         <Binding Source="{StaticResource ReportsVM}" />
     </UserControl.DataContext>
-
-    <Grid>
-            
+    <Grid Margin="16">
+        <ItemsControl ItemsSource="{Binding Reports}"
+                      x:Name="ReportsList">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                <i:InvokeCommandAction Command="{Binding DataContext.SelectReportCommand, ElementName=ReportsList}"
+                                                       CommandParameter="{Binding}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderThickness="1"
+                                BorderBrush="Black"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Stretch"
+                                Height="2"/>
+                        <TextBlock Text="{Binding Title}"
+                                   FontWeight="Medium"
+                                   Margin="8,8,8,0"
+                                   FontSize="14" />
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="8,0,8,8"
+                                    Grid.Row="1">
+                            <TextBlock Text="Created: "
+                                       FontSize="12"/>
+                            <TextBlock Text="{Binding CreationDate}"
+                                       FontSize="12"/>
+                            <TextBlock Text="Updated: "
+                                       Margin="8,0,0,0"
+                                       FontSize="12"/>
+                            <TextBlock Text="{Binding LastUpdateDate}"
+                                       FontSize="12"/>
+                        </StackPanel>
+                        <Border BorderThickness="1"
+                                BorderBrush="Black"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Stretch"
+                                Grid.Row="1"
+                                Height="2"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>

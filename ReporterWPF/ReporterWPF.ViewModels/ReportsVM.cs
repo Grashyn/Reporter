@@ -12,7 +12,10 @@ namespace ReporterWPF.ViewModels
         public ReportsVM()
         {
             ApiProvider.Instance.AuthorizationStateChanged += this.OnAuthorizationStateChanged;
+            this.SelectReportCommand = new DelegateCommand<Report>(this.SelectReportExecute);
         }
+
+        public DelegateCommand<Report> SelectReportCommand { get; }
 
         public ObservableCollection<Report> Reports
         {
@@ -34,6 +37,11 @@ namespace ReporterWPF.ViewModels
                 var result = await ApiProvider.Instance.GetReportsAsync();
                 this.Reports = new ObservableCollection<Report>(result);
             }
+        }
+
+        private void SelectReportExecute(Report selectedReport)
+        {
+
         }
     }
 }
