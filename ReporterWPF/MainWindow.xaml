@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow">
     <Grid>
-        <controls:ReportsControl />
-
         <controls:LoginControl />
+        <controls:ReportsControl />
     </Grid>
 </Window>
