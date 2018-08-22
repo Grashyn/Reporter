@@ -48,13 +48,13 @@
     <Compile Include="RequestComposer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ReporterWPF.Models\ReporterWPF.Models.csproj">
+    <ProjectReference Include="..\..\ReporterWPF.Models\ReporterWPF.Models.csproj">
       <Project>{1d9665f7-4b8b-44a3-bdef-8b32b72e7f86}</Project>
       <Name>ReporterWPF.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
