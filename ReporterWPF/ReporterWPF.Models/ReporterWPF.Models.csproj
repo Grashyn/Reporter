@@ -54,6 +54,7 @@
     <Compile Include="RequestType.cs" />
     <Compile Include="ApiModels\LoginData.cs" />
     <Compile Include="WebRequestExtensions.cs" />
+    <Compile Include="WindowState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

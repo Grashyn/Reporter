@@ -3,24 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:vm="clr-namespace:ReporterWPF.ViewModels;assembly=ReporterWPF.ViewModels"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             x:Name="ReportsList"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <vm:ReportsVM x:Key="ReportsVM"/>
-    </UserControl.Resources>
-    <UserControl.DataContext>
-        <Binding Source="{StaticResource ReportsVM}" />
-    </UserControl.DataContext>
     <Grid Margin="16">
-        <ItemsControl ItemsSource="{Binding Reports}"
-                      x:Name="ReportsList">
+        <ItemsControl ItemsSource="{Binding Reports}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid >
+                    <Grid>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding DataContext.PopulateChildrenCommand, ElementName=MainAddonWindow}"
+                                <i:InvokeCommandAction Command="{Binding DataContext.SelectReportCommand, ElementName=ReportsList}"
                                                        CommandParameter="{Binding}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>

@@ -1,6 +1,6 @@
 ﻿using ReporterWPF.DataAccess;
+using ReporterWPF.Models;
 using ReporterWPF.ViewModels.Core;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace ReporterWPF.ViewModels
@@ -9,12 +9,10 @@ namespace ReporterWPF.ViewModels
     {
         private string email = "spiderdk90@gmail.com";
         private bool isBusy;
-        private Visibility visibilityState = Visibility.Visible;
 
         public LoginVM()
         {
             this.LoginCommand = new DelegateCommand<object>(this.LoginExecute, this.LoginCanExecute);
-            ApiProvider.Instance.AuthorizationStateChanged += this.OnAuthorizationStateChanged;
         }
 
         public DelegateCommand<object> LoginCommand { get; }
@@ -27,19 +25,6 @@ namespace ReporterWPF.ViewModels
                 if (this.email != value)
                 {
                     this.email = value;
-                    this.RaisePropertyChanged();
-                }
-            }
-        }
-
-        public Visibility VisibilityState
-        {
-            get => this.visibilityState;
-            set
-            {
-                if (this.visibilityState != value)
-                {
-                    this.visibilityState = value;
                     this.RaisePropertyChanged();
                 }
             }
@@ -58,15 +43,12 @@ namespace ReporterWPF.ViewModels
             if (Object is PasswordBox passwordBox)
             {
                 await ApiProvider.Instance.Login(this.Email, passwordBox.SecurePassword);
+                MainVM.Instance.CurrentVM = new ReportsVM();
+                MainVM.Instance.State = WindowState.Reports;
             }
 
             this.isBusy = false;
             this.LoginCommand.RaiseCanExecuteChanged();
-        }
-
-        private void OnAuthorizationStateChanged(bool isAuthorized)
-        {
-            this.VisibilityState = isAuthorized ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }

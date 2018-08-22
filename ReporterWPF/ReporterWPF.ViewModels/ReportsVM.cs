@@ -1,4 +1,5 @@
 ﻿using ReporterWPF.DataAccess;
+using ReporterWPF.Models;
 using ReporterWPF.Models.ApiModels;
 using ReporterWPF.ViewModels.Core;
 using System;
@@ -12,8 +13,8 @@ namespace ReporterWPF.ViewModels
 
         public ReportsVM()
         {
-            ApiProvider.Instance.AuthorizationStateChanged += this.OnAuthorizationStateChanged;
             this.SelectReportCommand = new DelegateCommand<Report>(this.SelectReportExecute);
+            this.Initialize();
         }
 
         public DelegateCommand<Report> SelectReportCommand { get; }
@@ -31,18 +32,16 @@ namespace ReporterWPF.ViewModels
             }
         }
 
-        private async void OnAuthorizationStateChanged(bool isAuthorized)
+        public async void Initialize()
         {
-            if (isAuthorized)
-            {
-                var result = await ApiProvider.Instance.GetReportsAsync();
-                this.Reports = new ObservableCollection<Report>(result);
-            }
+            var result = await ApiProvider.Instance.GetReportsAsync();
+            this.Reports = new ObservableCollection<Report>(result);
         }
 
         private void SelectReportExecute(Report selectedReport)
         {
-
+            MainVM.Instance.CurrentVM = new ReportVM(selectedReport);
+            MainVM.Instance.State = WindowState.Report;
         }
     }
 }

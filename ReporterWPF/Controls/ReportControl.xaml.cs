@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ReporterWPF
+namespace ReporterWPF.Controls
 {
     /// <summary>
-    /// Interaction logic for ReportWindow.xaml
+    /// Interaction logic for ReportControl.xaml
     /// </summary>
-    public partial class ReportWindow : Window
+    public partial class ReportControl : UserControl
     {
-        public ReportWindow()
+        public ReportControl()
         {
             InitializeComponent();
         }

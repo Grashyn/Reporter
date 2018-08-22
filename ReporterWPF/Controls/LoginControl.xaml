@@ -4,9 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:ReporterWPF.ViewModels;assembly=ReporterWPF.ViewModels"
-             xmlns:converters="clr-namespace:ReporterWPF.Converters"
-             mc:Ignorable="d"
-             Visibility="{Binding VisibilityState}">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <vm:LoginVM x:Key="LoginVM"/>
     </UserControl.Resources>

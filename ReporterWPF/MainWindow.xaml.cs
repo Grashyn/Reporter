@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using ReporterWPF.ViewModels;
+using System.Windows;
 
 namespace ReporterWPF
 {
@@ -10,6 +11,7 @@ namespace ReporterWPF
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = MainVM.Instance;
         }
     }
 }

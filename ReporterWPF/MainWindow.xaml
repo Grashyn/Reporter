@@ -4,13 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:ReporterWPF.Controls"
+        xmlns:converters="clr-namespace:ReporterWPF.Converters"
         mc:Ignorable="d"
-        Title="MainWindow">
+        x:Name="main"
+        Title="Reporter" Width="600" Height="450">
+    <Window.Resources>
+        <converters:WindowStateToVisibilityConverter x:Key="WindowStateToVisibilityConverter" />
+    </Window.Resources>
     <Grid>
+        <controls:ReportControl Visibility="{Binding DataContext.State, Converter={StaticResource WindowStateToVisibilityConverter}, ConverterParameter=Report, ElementName=main}"
+                                DataContext="{Binding CurrentVM}"/>
         
-        <controls:ReportsControl />
+        <controls:ReportsControl Visibility="{Binding DataContext.State, Converter={StaticResource WindowStateToVisibilityConverter}, ConverterParameter=Reports, ElementName=main}"
+                                 DataContext="{Binding CurrentVM}"/>
 
-
-        <controls:LoginControl />
+        <controls:LoginControl Visibility="{Binding DataContext.State, Converter={StaticResource WindowStateToVisibilityConverter}, ConverterParameter=Login, ElementName=main}"
+                               DataContext="{Binding CurrentVM}"/>
     </Grid>
 </Window>
