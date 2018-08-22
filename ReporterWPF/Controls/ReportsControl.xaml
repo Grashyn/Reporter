@@ -20,7 +20,7 @@
                     <Grid >
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseLeftButtonUp">
-                                <i:InvokeCommandAction Command="{Binding DataContext.SelectReportCommand, ElementName=ReportsList}"
+                                <i:InvokeCommandAction Command="{Binding DataContext.PopulateChildrenCommand, ElementName=MainAddonWindow}"
                                                        CommandParameter="{Binding}" />
                             </i:EventTrigger>
                         </i:Interaction.Triggers>

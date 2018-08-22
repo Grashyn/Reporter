@@ -1,6 +1,7 @@
 ﻿using ReporterWPF.DataAccess;
 using ReporterWPF.Models.ApiModels;
 using ReporterWPF.ViewModels.Core;
+using System;
 using System.Collections.ObjectModel;
 
 namespace ReporterWPF.ViewModels
