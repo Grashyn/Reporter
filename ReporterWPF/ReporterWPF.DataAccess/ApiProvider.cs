@@ -11,7 +11,7 @@ namespace ReporterWPF.DataAccess
     public class ApiProvider
     {
         private static readonly Lazy<ApiProvider> LazyInstance = new Lazy<ApiProvider>(() => new ApiProvider());
-        private const string ServerUrl = "http://localhost:58589/api/";
+        private const string ServerUrl = "http://40.114.104.122:80/api/";
 
         public event Action<bool> AuthorizationStateChanged = status => { };
 
