@@ -45,28 +45,35 @@ namespace Reporter.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = db.Users.FirstOrDefault(item => item.Email == userModel.Email && item.Password == userModel.Password);
-            if (user != null)
+            try
             {
-                var tokenExpiration = TimeSpan.FromDays(1);
-                ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
-                identity.AddClaim(new Claim(ClaimTypes.Name, user.Email));
-                identity.AddClaim(new Claim("role", "user"));
-                var props = new AuthenticationProperties()
+                var user = db.Users.FirstOrDefault(item => item.Email == userModel.Email && item.Password == userModel.Password);
+                if (user != null)
                 {
-                    IssuedUtc = DateTime.UtcNow,
-                    ExpiresUtc = DateTime.UtcNow.Add(tokenExpiration),
-                };
-                var ticket = new AuthenticationTicket(identity, props);
-                var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
-                return Ok(new UserResponseExtended
-                {
-                    DisplayName = user.DisplayName,
-                    Email = user.Email,
-                    Id = user.Id,
-                    Rights = user.Rights,
-                    Token = accessToken
-                });
+                    var tokenExpiration = TimeSpan.FromDays(1);
+                    ClaimsIdentity identity = new ClaimsIdentity(OAuthDefaults.AuthenticationType);
+                    identity.AddClaim(new Claim(ClaimTypes.Name, user.Email));
+                    identity.AddClaim(new Claim("role", "user"));
+                    var props = new AuthenticationProperties()
+                    {
+                        IssuedUtc = DateTime.UtcNow,
+                        ExpiresUtc = DateTime.UtcNow.Add(tokenExpiration),
+                    };
+                    var ticket = new AuthenticationTicket(identity, props);
+                    var accessToken = Startup.OAuthBearerOptions.AccessTokenFormat.Protect(ticket);
+                    return Ok(new UserResponseExtended
+                    {
+                        DisplayName = user.DisplayName,
+                        Email = user.Email,
+                        Id = user.Id,
+                        Rights = user.Rights,
+                        Token = accessToken
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
 
             return BadRequest("Already exists");
